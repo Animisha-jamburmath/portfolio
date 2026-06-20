@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)file:///C:/Users/animi/Documents/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animisha | EEE Portfolio</title>
+<link href="./Animisha _ EEE Portfolio_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0ede8; --cream: #e8e4de; --white: #faf8f5;
+    --dark: #353030; --dark2: #353030; --text2: #666560;
+    --border: #d8d4ce; --gold: #b8a98a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--dark); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; }
+
+  nav {
+    background: var(--white); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 60px; display: flex; justify-content: space-between; align-items: center; height: 64px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; letter-spacing: 0.5px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--text2); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; text-transform: uppercase; }
+  .nav-links a:hover { color: var(--dark); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 6px; z-index: 1001; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); padding: 16px 20px 20px; z-index: 1000; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .mobile-menu.open { display: block; }
+  .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .mobile-menu a { display: block; padding: 10px 0; color: var(--dark); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  .hero { background: var(--white); padding: 80px 60px; display: flex; align-items: center; gap: 80px; border-bottom: 1px solid var(--border); min-height: 88vh; }
+  .hero-left { flex: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--cream); color: var(--text2); padding: 7px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 600; margin-bottom: 28px; letter-spacing: 0.5px; border: 1px solid var(--border); }
+  .hero-intro { font-size: 1rem; color: var(--text2); margin-bottom: 10px; font-weight: 400; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 6px; letter-spacing: -1px; }
+  .hero-role { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.1; margin-bottom: 28px; color: var(--dark2); font-style: italic; }
+  .hero-desc { color: var(--text2); max-width: 460px; margin-bottom: 40px; line-height: 1.8; font-size: 0.9rem; }
+  .hero-ctas { display: flex; gap: 14px; align-items: center; }
+  .btn-dark { background: var(--dark); color: var(--white); padding: 13px 32px; border-radius: 30px; font-weight: 600; font-size: 0.85rem; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; font-family: 'Inter', sans-serif; display: inline-block; letter-spacing: 0.5px; }
+  .btn-dark:hover { background: #333; transform: translateY(-1px); }
+  .btn-light { background: transparent; color: var(--dark); padding: 13px 32px; border-radius: 30px; font-weight: 600; font-size: 0.85rem; text-decoration: none; border: 1.5px solid var(--border); cursor: pointer; transition: border-color 0.2s, background 0.2s; font-family: 'Inter', sans-serif; display: inline-block; letter-spacing: 0.5px; }
+  .btn-light:hover { border-color: var(--dark); background: var(--cream); }
+  .hero-right { flex-shrink: 0; display: flex; align-items: center; gap: 0; position: relative; }
+  .profile-wrap { width: 320px; height: 400px; border-radius: 200px 200px 160px 160px; overflow: hidden; border: 3px solid var(--border); background: var(--cream); position: relative; flex-shrink: 0; }
+  .profile-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .hero-stats { display: flex; flex-direction: column; gap: 10px; margin-left: -22px; z-index: 10; position: relative; }
+  .h-stat { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 13px 18px; display: flex; align-items: center; gap: 12px; box-shadow: 0 6px 22px rgba(0,0,0,0.10); min-width: 155px; transition: transform 0.2s, box-shadow 0.2s; }
+  .h-stat:hover { transform: translateX(3px); box-shadow: 0 10px 30px rgba(0,0,0,0.14); }
+  .h-stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--dark); }
+  .h-stat-lbl { font-size: 0.72rem; color: var(--text2); font-weight: 500; line-height: 1.3; }
+  .h-stat-icon { font-size: 1.3rem; }
+
+  .section { padding: 80px 60px; max-width: 1150px; margin: 0 auto; }
+  .sec-bg { background: var(--white); border-top: 1px solid var(--border); }
+  .sec-label { font-size: 0.72rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 10px; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 800; margin-bottom: 44px; line-height: 1.1; }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; }
+  .about-text p { color: var(--text2); margin-bottom: 18px; line-height: 1.85; font-size: 0.92rem; }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 28px; }
+  .stat-box { background: var(--cream); border: 1px solid var(--border); border-radius: 12px; padding: 18px 10px; text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 900; color: var(--dark); display: block; }
+  .stat-lbl { font-size: 0.68rem; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; display: block; }
+  .info-cards { display: flex; flex-direction: column; gap: 10px; }
+  .info-card { background: var(--cream); border: 1px solid var(--border); border-left: 3px solid var(--dark); border-radius: 10px; padding: 14px 18px; }
+  .info-card-title { font-weight: 700; font-size: 0.72rem; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .info-card-val { font-weight: 600; color: var(--dark); font-size: 0.88rem; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .skill-cat { background: var(--cream); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+  .skill-cat-head { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 0.88rem; color: var(--dark); }
+  .skill-item { margin-bottom: 16px; }
+  .skill-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .skill-nm { font-size: 0.84rem; font-weight: 500; color: var(--dark); }
+  .skill-pct { font-size: 0.72rem; font-weight: 700; color: var(--text2); }
+  .skill-bar { height: 5px; background: var(--border); border-radius: 10px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--dark); border-radius: 10px; transform: scaleX(0); transform-origin: left; transition: transform 1s ease; }
+  .skill-fill.anim { transform: scaleX(1); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .proj-card { background: var(--cream); border: 1px solid var(--border); border-radius: 14px; padding: 30px; transition: box-shadow 0.2s, transform 0.2s; }
+  .proj-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.09); transform: translateY(-3px); }
+  .proj-card.feat { grid-column: span 2; background: var(--dark); color: var(--white); }
+  .proj-card.feat .proj-desc { color: #aaa; }
+  .proj-card.feat .p-tag { background: rgba(255,255,255,0.12); color: #ddd; border: 1px solid rgba(255,255,255,0.15); }
+  .proj-num { font-size: 0.68rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+  .proj-card.feat .proj-num { color: var(--gold); }
+  .proj-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 12px; line-height: 1.3; }
+  .proj-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .p-tag { background: var(--white); color: var(--text2); padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid var(--border); }
+  .proj-desc { color: var(--text2); font-size: 0.875rem; line-height: 1.75; }
+
+  .timeline { border-left: 2px solid var(--border); padding-left: 32px; margin-left: 8px; }
+  .t-item { position: relative; margin-bottom: 44px; }
+  .t-dot { position: absolute; left: -41px; top: 5px; width: 14px; height: 14px; background: var(--dark); border: 3px solid var(--bg); border-radius: 50%; }
+  .t-date { font-size: 0.72rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5px; }
+  .t-role { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; margin-bottom: 3px; }
+  .t-co { font-size: 0.85rem; color: var(--text2); font-weight: 600; margin-bottom: 10px; }
+  .t-desc { color: var(--text2); font-size: 0.875rem; line-height: 1.75; }
+
+  .hobbies-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; max-width: 680px; }
+  .hobby-item { display: flex; align-items: flex-start; gap: 14px; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 14px 20px; font-size: 0.9rem; font-weight: 400; color: var(--dark); transition: box-shadow 0.2s, transform 0.2s; }
+  .hobby-item:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.07); transform: translateX(5px); }
+  .hobby-bullet { color: var(--gold); font-size: 1rem; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+
+  .c-links { display: flex; flex-direction: column; gap: 10px; }
+  .c-link { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--dark); font-size: 0.875rem; transition: all 0.2s; background: var(--cream); }
+  .c-link:hover { border-color: var(--dark); background: var(--white); transform: translateX(4px); }
+  .c-icon { width: 32px; height: 32px; background: var(--dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; color: white; font-weight: 700; }
+
+  footer { background: var(--dark); color: #888; padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; letter-spacing: 0.5px; }
+  footer b { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; height: 56px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { flex-direction: column-reverse; padding: 40px 20px 48px; gap: 32px; min-height: auto; }
+    .hero-left { text-align: center; }
+    .hero-right { flex-direction: column; align-items: center; gap: 16px; width: 100%; }
+    .profile-wrap { width: 220px; height: 270px; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; justify-content: center; margin-left: 0; gap: 10px; }
+    .h-stat { min-width: 120px; padding: 14px 16px; }
+    .h-stat-num { font-size: 1.6rem; }
+    .section { padding: 48px 20px; }
+    .sec-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .skills-grid { grid-template-columns: 1fr; gap: 24px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 20px; }
+    .proj-card.feat { grid-column: span 1; }
+    .proj-card { padding: 24px 20px; }
+    .timeline { padding-left: 20px; }
+    .hobby-item { padding: 9px 16px; font-size: 0.82rem; }
+    footer { flex-direction: column; gap: 6px; padding: 20px; text-align: center; }
+  }
+  
+  @media (max-width: 480px) {
+    nav { padding: 0 16px; }
+    .section { padding: 36px 16px; }
+    .hero { padding: 32px 16px 40px; }
+    .profile-wrap { width: 180px; height: 220px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .sec-title { font-size: clamp(1.4rem, 8vw, 2rem); }
+    
+    
+  }
+  /* Project buttons - Clean pill style */
+.project-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.project-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f0f0;
+  color: #333;
+  padding: 6px 18px;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+}
+
+.project-btn .btn-icon {
+  font-size: 0.9rem;
+}
+
+.project-btn:hover {
+  background: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+/* Featured project buttons - light version on dark background */
+.proj-card.feat .project-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.proj-card.feat .project-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .project-buttons {
+    gap: 8px;
+  }
+  .project-btn {
+    padding: 5px 14px;
+    font-size: 0.7rem;
+  }
+  .project-btn .btn-icon {
+    font-size: 0.8rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Animisha</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#project">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+    <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+    <li><a href="#project" onclick="closeMobileMenu()">Projects</a></li>
+    <li><a href="#experience" onclick="closeMobileMenu()">Experience</a></li>
+    <li><a href="#hobbies" onclick="closeMobileMenu()">Hobbies</a></li>
+    <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">⚡ Electrical &amp; Electronics Engineering</div>
+    <div class="hero-intro">Hey, I'm</div>
+    <h1 class="hero-name">Animisha,</h1>
+    <div class="hero-role">A Passionate about Embedded system &amp; <br>PCB designing</div>
+    <p class="hero-desc">Transforming electrical principles into smart systems — from power converters to embedded firmware. Passionate about clean energy and intelligent electronics.</p>
+    <div class="hero-ctas">
+      <a href="#project" class="btn-dark">View Projects</a>
+      <a href="mailto:animisha.jamburmath@gmail.com" class="btn-light">Contact Me</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="profile-wrap">
+      <img src="profile.jpg" alt="Animisha">
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat">
+        <span class="h-stat-icon">⚡</span>
+        <div><span class="h-stat-num">4+</span><div class="h-stat-lbl">Projects<br>Completed</div></div>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-icon">🏢</span>
+        <div><span class="h-stat-num">Open</span><div class="h-stat-lbl">To Intern<br>Opportunities</div></div>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-icon">🏆</span>
+        <div><span class="h-stat-num">~8.5</span><div class="h-stat-lbl">CGPA<br>Score</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="sec-bg" id="about">
+  <div class="section">
+    <div class="sec-label">About Me</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="sec-title">Engineering the<br><em>Smarter Grid.</em></h2>
+        <p>I'm a 4rd-year Electrical &amp; Electronics Engineering student with a basics foundation in circuit design, power electronics, and control systems. My curiosity drives me to solve real-world energy and automation problems.</p>
+        <p>From designing power converters to programming microcontrollers, I enjoy working at the intersection of hardware and software. I have hands-on experience with VisualStudio, Arduino IDE Espressif-IDE,STM32CUBE-IDE,FreeCAD, LTspice and KiCad.</p>
+        
+      </div>
+      <div class="info-cards">
+        <div class="info-card"><div class="info-card-title">🎓 College</div><div class="info-card-val">Jawaharlal Nehru New College of Engineering</div></div>
+        <div class="info-card"><div class="info-card-title">📍 Location</div><div class="info-card-val">Shivamogga, Karnataka, India</div></div>
+        <div class="info-card"><div class="info-card-title">💡 Specialization</div><div class="info-card-val">Power Electronics, PCB Design &amp; Embedded Systems</div></div>
+        <div class="info-card"><div class="info-card-title">🏆 Achievement</div><div class="info-card-val"><br>● 1st Prize Winner – Mini Project Exhibition <br>● Awarded First Prize In Maze Runner in Sigma State Level competition<br>● Second Prize In Drawing Competition </div></div>
+        <div class="info-card"><div class="info-card-title">📌 Looking For</div><div class="info-card-val">Intern roles/Full-time roles in Graduate trainee / Embedded developer/ PCB Design / C/C++</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" style="border-top:1px solid var(--border);">
+  <div class="section">
+    <div class="sec-label">Skills</div>
+    <h2 class="sec-title">Technical Skills.</h2>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="skill-cat-head">⚡ Core EEE</div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">Power Electronics</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:88%"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">Circuit/PCB Design</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:85%"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">Arduino/ESP32/STM32</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:80%"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">C/C++</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:75%"></div></div></div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-head">🛠 Tools &amp; Software</div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">KiCad</span><span class="skill-pct">72%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:72%"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">Espressif-IDE</span><span class="skill-pct">72%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:72%"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">Arduino IDE</span><span class="skill-pct">70%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:70%"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">STM32CUBE-IDE</span><span class="skill-pct">70%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:70%"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-nm">FreeCAD </span><span class="skill-pct">70%</span></div><div class="skill-bar"><div class="skill-fill anim" style="width:70%"></div></div></div>
+
+
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<!-- Project 1 - Featured -->
+<div class="proj-card feat" id="project">
+  <div class="proj-num">⭐ Featured Project -1</div>
+  
+  <h3 class="proj-title">AI SMART ENERGY METER </h3>
+  <div class="proj-tags">
+    <span class="p-tag"> Raspberry Pi Pico W, IoT, Web Application, MQTT </span>
+    
+  </div>
+  <p class="proj-desc">Developed an IoT-based smart energy monitoring system using Raspberry Pi Pico W, MQTT, and a web application to measure and visualize electrical parameters in real time. The system enabled remote monitoring of energy consumption through an interactive dashboard and was recognized for its innovation, securing campus-level selection and funding support from NewGen IEDC.</p>
+</div>
+
+<!-- Project 2 - Featured -->
+<div class="proj-card feat" id="project">
+  <div class="proj-num">⭐ Featured Project -2</div>
+  
+  <h3 class="proj-title">AI-ML Based Autonomous Solar Panel Cleaning Bot </h3>
+  <div class="proj-tags">
+    <span class="p-tag"> Embedded system, Python, HTTPs, Node js, React js MQTT, POSTgre SQL, Linear Regression, ESP32, API  </span>
+    
+  </div>
+  <p class="proj-desc">Developed an AI-ML based autonomous solar panel cleaning system using dual ESP32 microcontrollers, MQTT communication, and 
+ real-time AQI monitoring through the OpenWeatherMap API. Built an intelligent cleaning robot capable of automatic and manual opera
+ tion, with real-time voltage, current, power, and energy monitoring through a mobile application. Implemented machine learning models 
+ for power forecasting and dust-level prediction to improve solar panel efficiency while reducing water consumption and maintenance 
+ costs.  Presented at National Renewable Energy Conference 2024.</p>
+</div>
+
+<!-- Project 2 -->
+<div class="proj-card feat" id="project">
+  <div class="proj-num">Project 03</div>
+  
+  <h3 class="proj-title">IoT-Based Smart Shoe Using Piezoelectric Technology</h3>
+  <div class="proj-tags">
+    <span class="p-tag">IoT,Embedded,ESP32</span>
+    
+  </div>
+  <p class="proj-desc">A smart wearable shoe integrated with a piezoelectric module and ESP32 that enables real-time communication in critical scenarios such as trekking, rescue, or defense. The project focuses on harvesting energy through a piezoelectric shoe sole, converting mechanical pressure from walking into usable electrical energy. Push-buttons embedded in the shoe allow the user to trigger predefined actions, such as sending location coordinates or emergency SOS messages, via MQTT to a base camp. The solution provides a low-cost, portable, and reliable emergency communication tool that enhances safety for soldiers, trekkers, and individuals in remote or high-risk environments.</p>
+</div>
+
+<!-- Project 3 -->
+<div class="proj-card">
+  <div class="proj-num">Project 04</div>
+  <div class="project-buttons">
+   
+ 
+  <h3 class="proj-title">RADAR SURVEILLENCE SYSTEM</h3>
+  <div class="proj-tags">
+    <span class="p-tag">Arduino Uno,Ultrasonic Sensor,Servo Motor</span>
+    </div>
+  <p class="proj-desc">Radar surveillance systems play a vital role in detecting, tracking, and analyzing objects within a defined range using sensor-based technology. With the rising need for automation and intelligent monitoring, such systems have become essential in defense, security, and traffic applications.</p>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience" style="border-top:1px solid var(--border);">
+  <div class="section">
+    <div class="sec-label">Experience &amp; Learning</div>
+    <h2 class="sec-title">My Journey So Far.</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-date">2022 — Present</div>
+        <div class="t-role">B.E. — Electrical &amp; Electronics Engineering</div>
+        <div class="t-co">Jawaharlal Nehru New College of Engineering, Shivamogga</div>
+        <div class="t-desc">Currently in 3rd year with a CGPA of ~8.5. Core subjects include Power Electronics, Control Systems, Microcontrollers, Circuit Design, and Signals &amp; Systems. Actively building projects beyond the curriculum to strengthen practical skills.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-date">2024</div>
+        <div class="t-role">🏆 First Prize — Maze Runner (Sigma State Level)</div>
+        <div class="t-co">State Level Technical Competition</div>
+        <div class="t-desc">Won first place in the Maze Runner robotics event at Sigma State Level competition. Designed and built an autonomous line-following robot using embedded C and sensor integration — showcasing skills in real-time systems and hardware-software interfacing.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-date">2025</div>
+        <div class="t-role">🏆 First Prize Winner – Mini Project Exhibition </div>
+        <div class="t-co">college Level Technical Competition</div>
+        <div class="t-desc">Secured 1st Place in the POWERTRON 2025–26 Mini Project Exhibition by developing and presenting an innovative Electrical and Electronics Engineering solution.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-date">2023 — 2024</div>
+        <div class="t-role">Self-Driven Projects &amp; Technical Skills</div>
+        <div class="t-co">Independent Learning</div>
+        <div class="t-desc">Built 5+ hands-on projects Learned PCB design with KiCad, embedded programming with Arduino/ESP32, and simulation with MATLAB — all self-initiated beyond coursework.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-date">Actively Seeking</div>
+        <div class="t-role">Internship / Entry-Level Role</div>
+        <div class="t-co">Open to Opportunities</div>
+        <div class="t-desc">Looking for internship or fresher roles in Power Systems, Embedded Systems, PCB Design, or C/C++ development. I bring strong fundamentals, a proven ability to build real projects, fast learning, and genuine passion for electrical engineering. Ready to contribute from day one.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOBBIES -->
+<div class="sec-bg" id="hobbies" style="border-top:1px solid var(--border);">
+  <div class="section">
+    <div class="sec-label">Beyond Engineering</div>
+    <h2 class="sec-title">Hobbies &amp; Interests.</h2>
+    <ul class="hobbies-list">
+      <li class="hobby-item"><span class="hobby-bullet">→</span><span>Drawing &amp; Sketching — love expressing creativity through art in free time</span></li>
+      <li class="hobby-item"><span class="hobby-bullet">→</span><span>Robotics &amp; Tinkering — building small circuits and bots just for fun</span></li>
+      <li class="hobby-item"><span class="hobby-bullet">→</span><span>Reading Tech Blogs — staying updated on embedded systems and electronics trends</span></li>
+      <li class="hobby-item"><span class="hobby-bullet">→</span><span>Gaming — enjoy strategy and puzzle games that sharpen problem-solving</span></li>
+      <li class="hobby-item"><span class="hobby-bullet">→</span><span>Nature &amp; Trekking — exploring the outdoors to recharge and stay grounded</span></li>
+      <li class="hobby-item"><span class="hobby-bullet">→</span><span>DIY Electronics Projects — turning ideas into working prototypes at home</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="sec-bg" id="contact">
+  <div class="section">
+    <div class="sec-label">Get In Touch</div>
+    <h2 class="sec-title">Let's Talk.</h2>
+    <div style="max-width: 600px;">
+      <p style="color:var(--text2); margin-bottom:32px; line-height:1.85; font-size:0.95rem;">I'm a passionate 4rd-year EEE student actively seeking internship opportunities in Power Systems, Embedded Electronics, or PCB Design. I bring strong theoretical knowledge, hands-on project experience, and a drive to learn fast. Feel free to reach out!</p>
+      <div class="c-links">
+        <a href="mailto:animisha.jamburmath@gmail.com" class="c-link"><div class="c-icon">@</div><span>animisha.jamburmath@gmail.com</span></a>
+        <a href="https://www.linkedin.com/in/animisha-jamburmath-757557277/" class="c-link"><div class="c-icon">in</div><span>linkedin.com/in/animisha-jamburmath</span></a>
+        <a href="https://github.com/Animisha-jamburmath" class="c-link"><div class="c-icon">gh</div><span>github.com/Animisha-jamburmath</span></a>
+        <a href="https://drive.google.com/file/d/1YCfikuFNVlNupzzS6Rp0mRqSC4PzcRSB/view?usp=drive_link" class="c-link"><div class="c-icon">cv</div><span>Download Resume / CV</span></a>
+        <a href="https://www.instagram.com/thesketchyyman/" class="c-link"><div class="c-icon">IN</div><span>Instagram </span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <b>Animisha — EEE Portfolio</b>
+  <span>  </span>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) document.querySelectorAll('.skill-fill').forEach(f => f.classList.add('anim'));
+  });
+}, { threshold: 0.1 }).observe(document.querySelector('#skills'));
+
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+</script>
+
+</body></html>
